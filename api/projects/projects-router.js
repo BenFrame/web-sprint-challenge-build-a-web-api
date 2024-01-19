@@ -101,15 +101,17 @@ router.delete('/:id', async (req, res) => {
 
 router.get('/:id/actions', (req, res) =>{
     console.log(req.params.id)
-    Actions.get(req.params.id.actions)
-        .then(actions => {
-            if(!actions){
-                res.status(404).json({
-                    message: 'The action with the specified ID does not exists'
-                })
+    Projects.get(req.params.id)
+        .then(project => {
+            console.log(project)
+            if(!project.actions){
+                res.json([])
+                // res.status(404).json({
+                //     message: 'The action with the specified ID does not exists'
+                // })
                 // return []
             } else {
-                res.json(actions)
+                res.json(project.actions)
             }
         })
         .catch()
