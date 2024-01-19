@@ -1,6 +1,7 @@
 const express = require('express')
 
 const Projects = require('../projects/projects-model')
+const Actions = require('../actions/actions-model')
 
 const router = express.Router()
 
@@ -96,6 +97,20 @@ router.delete('/:id', async (req, res) => {
             stack: err.stack,
         })
     }
+})
+
+router.get('/:id/actions', (req, res) =>{
+    Actions.get(req.params.id)
+        .then(actions => {
+            if(!actions){
+                res.status(404).json({
+                    message: 'The action with the specified ID does not exists'
+                })
+            } else {
+                res.json(actions)
+            }
+        })
+        .catch()
 })
 
 
