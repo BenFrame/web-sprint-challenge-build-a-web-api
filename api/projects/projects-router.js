@@ -100,7 +100,7 @@ router.delete('/:id', async (req, res) => {
 })
 
 router.get('/:id/actions', (req, res) =>{
-    console.log(req.params.id)
+    // console.log(req.params.id)
     Projects.get(req.params.id)
         .then(project => {
             console.log(project)
