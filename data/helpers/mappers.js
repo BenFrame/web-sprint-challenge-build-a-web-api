@@ -6,10 +6,16 @@ module.exports = {
 };
 
 function intToBoolean(int) {
+  if( typeof int === "boolean" ) {
+    return int;
+  }
   return int === 1 ? true : false;
 }
 
 function booleanToint(bool) {
+  if( typeof bool === "number" ) {
+    return bool;
+  }
   return bool === true ? 1 : 0;
 }
 
